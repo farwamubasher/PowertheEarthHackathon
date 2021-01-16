@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Lemonada');
+);
 
 body, html {
     margin: 0;
@@ -15,7 +15,7 @@ div{
 h1{
 	text-align: center;
 	color: black;
-	font-family: 'Arial', cursive !important;
+	font-family: 'Arial';
 	text-transform: uppercase;
 }
 
@@ -26,5 +26,5 @@ ul{
 
 #completed-tasks span{
 	text-decoration: line-through;
-	font-size: 1.2em !important;
+	font-size: 1.2em ;
 }
