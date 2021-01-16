@@ -28,23 +28,18 @@
       var map, infoWindow;
       function initMap() {
       // The location of Uluru
- 			 var uluru = {lat: 43.658025, lng: -79.377499};
-  		 var uluru1 = {lat: 43.661643, lng: -79.374209};
-       var uluru2 = {lat: 43.708674, lng: -79.779727};
-       var uluru3 = {lat: 43.731625, lng: -79.808542};
-       var uluru4 = {lat: 43.585389, lng: -79.760338}; 
-       var uluru5 = {lat: 43.730435, lng: -79.774546};
-       var uluru6 = {lat: 43.692133, lng: -79.764268};
-       var uluru7 = {lat: 43.716643, lng: -79.724894};
-       var uluru8 = {lat: 43.716979, lng: -79.717054};
-       var uluru9 = {lat: 43.660911, lng: -79.729507};
-        var hospital1 = { lat: 43.6591, lng: -79.3880};
-        var hospital2 = {lat: 43.747195, lng: -79.745069};
-        var hospital3 = {lat: 43.558812, lng: -79.703540};
-        var hospital4 = {lat: 43.571516, lng: -79.607128};
-        var hospital5 = {lat: 43.756624, lng: -79.246966};
-        var hospital6 = {lat: 43.870374, lng: -79.451589};
-        var hospital7 = {lat: 43.657391, lng: -79.388839};
+
+ 			 var uluru = {lat: 43.856195, lng: -79.435536};
+  		 var uluru1 = {lat: 43.849049, lng: -79.459048};
+       var uluru2 = {lat: 43.840400, lng: -79.423593};
+       var uluru3 = {lat: 43.589330, lng: -79.736121};
+       var uluru4 = {lat: 43.597851, lng: -79.778865}; 
+       var uluru5 = {lat: 43.599264, lng: -79.785817};
+       var uluru6 = {lat: 43.533130, lng: -79.677088};
+       var uluru7 = {lat: 43.703872, lng: -79.788603};
+       var uluru8 = {lat: 43.648381, lng: -79.889994};
+       var uluru9 = {lat: 43.750730, lng: -79.738890};
+        
         
         map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: 43.792818, lng: -79.603887},
@@ -61,13 +56,7 @@
   var marker7 = new google.maps.Marker({position: uluru7, map: map}); 
   var marker8 = new google.maps.Marker({position: uluru8, map: map});  
   var marker9 = new google.maps.Marker({position: uluru9, map: map});
-  var marker10 = new google.maps.Marker({position: hospital1, map: map});  
-          var marker11 = new google.maps.Marker({position: hospital2, map: map});  
-          var marker12 = new google.maps.Marker({position: hospital3, map: map}); 
-          var marker13 = new google.maps.Marker({position: hospital4, map: map});  
-          var marker14 = new google.maps.Marker({position: hospital5, map: map});  
-          var marker15 = new google.maps.Marker({position: hospital6, map: map});  
-          var marker16 = new google.maps.Marker({position: hospital7, map: map});  
+  
         
         infoWindow = new google.maps.InfoWindow;
 
