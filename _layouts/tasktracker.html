@@ -21,70 +21,160 @@
 {% seo %}
   </head>
 
-  <body>
-   
-    <div class="shell">
-
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-          
-            <h1>{{ site.title | default: site.github.repository_name }}</h1>
-            <h2>{{ site.description | default: site.github.project_tagline }}</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
   
-      </header>
+<style>
+#stepProgressBar  {
+	display:  flex;
+	justify-content:  space-between;
+	align-items:  flex-end;
+	width:  300px;
+	margin:  0  auto;
+	margin-bottom:  40px;
+}
 
-      {% if site.show_downloads %}
-        <section id="downloads">
-          <span class="inner">
-            <a href="{{ site.github.zip_url }}" class="zip"><em>download</em> .ZIP</a><a href="{{ site.github.tar_url }}" class="tgz"><em>download</em> .TGZ</a>
-          </span>
-        </section>
-      {% else %}
-        <div id="no-downloads">
-          <span class="inner">
-          </span>
-        </div>
-      {% endif %}
-    
+.step  {
+text-align:  center;
+}
 
-      <span class="banner-fix"></span>
-      <div
-  id="app"
-  :class="progressClasses"
->
-  <div class="progress__bg"></div>
-  <template v-for="(step, index) in steps">
-    <div :class="stepClasses(index)">
-      <div class="progress__indicator">
-        <i class="fa fa-check"></i>
-      </div>
-      <div class="progress__label">
-        {{step.label}}
-      </div>
-    </div>
-  </template>
+.step-text  {
+margin-bottom:  10px;
+color:  #28a745;
+}
+
+
+.bullet {
+	border: 1px solid #28a745;
+	height: 20px;
+	width: 20px;
+	border-radius: 100%;
+	color: #28a745;
+	display: inline-block;
+	position: relative;
+	transition: background-color 500ms;
+  line-height:20px;
+}
+
+
+.bullet.completed  {
+	color:  white;
+	background-color:  #28a745;
+}
+
+
+
+.bullet.completed::after {
+	content: '';
+	position: absolute;
+	right: -60px;
+	bottom: 10px;
+	height: 1px;
+	width: 54px;
+	background-color: #28a745;
+}
+
+/* Base styles and helper stuff */
+.hidden  {
+	display:  none;
+}
+ 
+button  {
+	padding:  5px  10px;
+	border:  1px  solid  black;
+	transition:  250ms background-color;
+}
+
+button:hover  {
+	cursor:  pointer;
+	background-color:  black;
+	color:  white;
+}
+
+button:disabled:hover  {
+	opacity:  0.6;
+	cursor:  not-allowed;
+}
+
+.text-center  {
+	text-align:  center;
+}
   
-  <div class="progress__actions">
-    <div
-      class="btn"
-      v-on:click="nextStep(false)"
-    >
-      Back
-    </div>
-    <div
-      class="btn"
-      v-on:click="nextStep"
-    >
-      Next
-    </div>
-    <div>
-      Step:
-      {{currentStep ? currentStep.label : "Start"}}
-    </div>
-  </div>
+.container  {
+	max-width:  400px;
+	margin:  0  auto;
+	margin-top:  20px;
+	padding:  40px;
+}
+</style>
+<body>
+
+<h1>JavaScript Progress Bar</h1>
+
+<div class="container">
+	<a target="_blank" href="https://www.youtube.com/watch?v=WW6fEuheuas"><h1 class="text-center">Step Progress Bar (Video)</h1></a>
+<div id="stepProgressBar">
+	<div class="step">
+		<p class="step-text">About</p>
+		<div class="bullet">1</div>
+	</div>
+	<div class="step">
+		<p class="step-text">Contact</p>
+		<div class="bullet">2</div>
+	</div>
+	<div class="step">
+		<p class="step-text">Step 3</p>
+		<div class="bullet">3</div>
+	</div>
+	<div class="step">
+		<p class="step-text">Step 4</p>
+		<div class="bullet ">4</div>
+	</div>
 </div>
+<div id="main">
+	<p id="content"  class="text-center">Step Number 1</p>
+	<button id="previousBtn" >Previous</button>
+	<button id="nextBtn">Next</button>
+	<button id="finishBtn" >Finish</button>
+</div>
+</div>
+  
+
+<script>
+const  previousBtn  =  document.getElementById('previousBtn');
+const  nextBtn  =  document.getElementById('nextBtn');
+const  finishBtn  =  document.getElementById('finishBtn');
+const  content  =  document.getElementById('content');
+const  bullets  =  [...document.querySelectorAll('.bullet')];
+
+const MAX_STEPS = 4;
+let currentStep = 1;
+
+nextBtn.addEventListener('click',  ()  =>  {
+	bullets[currentStep  -  1].classList.add('completed');
+	currentStep  +=  1;
+	previousBtn.disabled  =  false;
+	if  (currentStep  ===  MAX_STEPS)  {
+		nextBtn.disabled  =  true;
+		finishBtn.disabled  =  false;
+	}
+	content.innerText  =  `Step Number ${currentStep}`;
+});
+
+
+previousBtn.addEventListener('click',  ()  =>  {
+	bullets[currentStep  -  2].classList.remove('completed');
+	currentStep  -=  1;
+	nextBtn.disabled  =  false;
+	finishBtn.disabled  =  true;
+	if  (currentStep  ===  1)  {
+		previousBtn.disabled  =  true;
+	}
+	content.innerText  =  `Step Number ${currentStep}`;
+});
+
+finishBtn.addEventListener('click',  ()  =>  {
+	location.reload();
+});
+</script>
+
+</body>
+</html>
